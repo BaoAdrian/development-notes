@@ -64,6 +64,12 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/kcadm.sh config credentials --s
 docker exec -it keycloak bash -c '/opt/jboss/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password admin && /opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=NONE'
 ```
 
+Enter `mysql` shell inside mysql container in single command
+```
+docker exec -it db /bin/sh -c 'mysql -uroot -ppassword'
+mysql> \h
+```
+
 # Docker Compose Notes
 Start services 
 ```
@@ -101,3 +107,8 @@ docker-compose exec -it [service] [command]
 docker-compose exec -it postgres ls -la
 ```
 
+Rebuild specific service without affecting other services
+```
+docker-compose up -d --no-deps --build [service]
+docker-compose up -d --no-deps --build api
+```
